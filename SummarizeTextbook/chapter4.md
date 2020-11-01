@@ -38,8 +38,13 @@ Full Adder: input으로 A, B, Cin 받아서 output인 Cout과 Sum으로 표기. 
 
 Mux를 사용해서 구현할 경우 TTL 패키지가 2개(Mux 패키지 하나, inverter 패키지 하나)만 있으면 된다는 장점. 그냥 게이트들로만 구현할 경우 패키지가 4, 5개는 필요하다. 
 
+## 4.3 Two-Level and Multilevel Logic
+
 ### 예시: Mux로 7-segment display 만들기
+- 
 진리표:
+
+### CLB application
 
 ------
 ## Demux(Demultiplexer) 
@@ -89,3 +94,23 @@ PLA와 이름이 헷갈리는데, Program And onLy로 외우면 쉽다. PLA와 �
 | 1 |  1  |  0  |  1  |   | 1 | 0 |  |  |
 | 1 |  1  |  1  |  0  |   | 1 | 0 |  |  |
 | 1 |  1  |  1  |  1  |   | 1 | 1 |  |  |
+
+
+## 4.4 Non-Gate Logic
+### Tri-State Outputs
+- 저항(impedence)이 무한대인 상태 High impedence -> Z로 나타냄.
+- OE(Output Enable)라는 input을 사용함
+- 하나 이상의 게이트가 같은 output wire에 연결될 수 있도록 함. 
+
+### Tri-state gates로 경제적인 Mux 만들기
+![TristateMux](./images/TristateGatesMux.png)
+
+위 그림을 보면, SelectInput이 0일때는 input0이, SelectInput이 1일 때는 Input1이 F에 들어간다. 
+
+### Open-collector Ouptuts and Wired Logic
+- Open-Collector NAND gate
+- 여러 개 게이트를 하나의 output wire에 연결할 수 있다. pullup resistor를 사용한다. 
+- 아래 그림에서, A와 B가 전부 연결되어야 F가 GND 0 V에 연결되고 0의 값을 가진다. 둘 중 하나라도 열려 있다면 GND와 연결되지 않고 위의 +와 연결된다. 
+![OpenCollectorNand](./images/OpenCollectorNand.png)
+
+- 이를 통해서 wire 하나에 다 연결하는 wired-AND를 구현할 수 있다. 
